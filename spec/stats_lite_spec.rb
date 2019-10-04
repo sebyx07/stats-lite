@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe StatsLite do
-  it "has a version number" do
-    expect(StatsLite::VERSION).not_to be nil
-  end
-
-  it "does something useful" do
-    expect(false).to eq(true)
-  end
+ it "version" do
+   expect(StatsLite::VERSION).not_to be_nil
+ end
 end
