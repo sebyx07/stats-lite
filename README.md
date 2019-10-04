@@ -64,10 +64,10 @@ mount StatsLite::App => "/server-stats"
 
 StatsLite.configure do |s, h|
   s.password ENV["STATS_LITE_PASS"] # defaults to nil, unprotected
-  s.port ENV["STATS_LITE_PORT"], defaults to 9111
+  s.port ENV["STATS_LITE_PORT"] # defaults to 9111
 
   s.data -> (data) do # add more data
-    data[:ruby_current_time] = Time.now #simple value
+    data[:ruby_current_time] = Time.now # simple value
     data[:linux_time] = h.command("date") # bash command, supports {cache: true, expires_in: 60} 
 
     data[:slow_command] = h.fetch :slow_command, -> {
