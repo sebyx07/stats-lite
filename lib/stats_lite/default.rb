@@ -50,6 +50,8 @@ module StatsLite
           map.map do |k, v|
             map[k] = "#{v}GB"
           end
+
+          map
         end
 
         { usage: h.fetch(:hdd, result, expires_in: 60) }
