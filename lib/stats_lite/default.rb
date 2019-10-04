@@ -5,21 +5,21 @@ module StatsLite
     class << self
       def host
         {
-          hostname: h.command("hostname", cache: true),
+          hostname: h.command(df_c[:host][:hostname], cache: true),
           ip: ip
         }
       end
       def cpu
         {
-          model: h.command("lscpu | grep 'Model name' | cut -f 2 -d \":\" | awk '{$1=$1}1'", cache: true),
-          cores: h.command("nproc", cache: true),
+          model: h.command(df_c[:cpu][:model], cache: true),
+          cores: h.command(df_c[:cpu][:cores], cache: true),
           usage: _cpu_usage
         }
       end
 
       def ip
         {
-          public: h.command("curl -s ifconfig.me", cache: true)
+          public: h.command(df_c[:host][:ip][:public], cache: true)
         }
       end
 
@@ -36,11 +36,8 @@ module StatsLite
       end
 
       def _cpu_usage
-        total = <<-CMD
-(grep 'cpu ' /proc/stat;sleep 0.1;grep 'cpu ' /proc/stat)|awk -v RS="" '{print ""($13-$2+$15-$4)*100/($13-$2+$15-$4+$16-$5)"%"}'
-        CMD
         {
-          total: fmt_nr(h.command(total))
+          total: fmt_nr(h.command(df_c[:cpu][:usage]))
         }
       end
 
@@ -59,6 +56,10 @@ module StatsLite
 
       def fmt_nr(number)
         "#{number.gsub("%", "").to_i}%"
+      end
+
+      def df_c
+        StatsLite::DEFAULT_COMMANDS
       end
 
       def h
