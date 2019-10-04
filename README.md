@@ -23,7 +23,7 @@ Add to startup, crontab
 ```shell script
 crontab -e
 # then add
-@reboot stats-lite
+@reboot /usr/local/bin/stats-lite
 ```
 
 ![demo](https://raw.githubusercontent.com/sebyx07/stats-lite/master/docs/example.png)
