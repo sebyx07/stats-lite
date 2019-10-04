@@ -7,20 +7,24 @@ Embeddable in Rails
 
 Requirements ruby, min version 2
 
-```shell script
+
+```shell_script
 sudo apt-get install -y ruby build-essential ruby-dev
 ```
 
 Usage standalone, you might need to run some commands as __sudo__.
 
-```shell script
+
+```shell_script
 gem install stats_lite --no-ri --no-rdoc
 stats-lite
 curl http://localhost:9111
 ```
 
 Add to startup, crontab
-```shell script
+
+
+```shell_script
 crontab -e
 # then add
 @reboot /usr/local/bin/stats-lite
@@ -40,7 +44,7 @@ StatsLite.configure do |s|
 end
 ```
 
-```shell script
+```shell_script
 # now it's protected by passowrd
 curl http://localhost:9111?password=1234 
 ```
