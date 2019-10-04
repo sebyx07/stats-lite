@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "stats_lite"
+require "rack/handler/puma"
+require "filewatcher"
+
+print StatsLite::Log.yellow("\nStarting stats-lite\n")
+config = "./config.rb"
+
+load_config = -> do
+  if File.exist?(config)
+    print StatsLite::Log.red "\nFound config.rb\n"
+    load config
+  end
+end
+
+load_config.call
+Thread.new do
+  Filewatcher.new(StatsLite.configure.watch).watch do |filename, event|
+    load_config.call
+  end
+end
+
+app = Rack::Builder.new do
+  use StatsLite::App
+  run lambda { |env| [404, {}, []] }
+end
+
+Rack::Handler::Puma.run(app, Port: 3000)
