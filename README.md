@@ -8,9 +8,22 @@ Embeddable in Rails
 Requirements ruby, min version 2
 
 ```shell script
-gem install stats_lite
+sudo apt-get install -y ruby build-essential ruby-dev
+```
+
+Usage standalone, you might need to run some commands as __sudo__.
+
+```shell script
+gem install stats_lite --no-ri --no-rdoc
 stats-lite
 curl http://localhost:9111
+```
+
+Add to startup, crontab
+```shell script
+crontab -e
+# then add
+@reboot stats-lite
 ```
 
 ![demo](https://raw.githubusercontent.com/sebyx07/stats-lite/master/docs/example.png)

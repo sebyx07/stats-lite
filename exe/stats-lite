@@ -27,4 +27,4 @@ app = Rack::Builder.new do
   run lambda { |env| [404, {}, []] }
 end
 
-Rack::Handler::Puma.run(app, Port: 3000)
+Rack::Handler::Puma.run(app, Port: StatsLite.configure.port)

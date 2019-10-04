@@ -7,12 +7,14 @@ RSpec::Core::RakeTask.new(:spec)
 
 task default: :spec
 
+get_gem_file = -> { Dir["pkg/*"].first }
+
 desc "test"
 task :test do
   sh "gem uninstall stats_lite -a -x"
-  sh "rm pkg/*"
+  sh "rm #{get_gem_file.call} -f"
   sh "rake build"
-  sh "gem install pkg/*"
+  sh "gem install #{get_gem_file.call}"
 end
 
 desc "integration"
@@ -20,3 +22,12 @@ task "integration" do
   sh "rake test"
   sh "cd integration_test && stats-lite"
 end
+
+
+desc "deploy"
+task "deploy" do
+  sh "rm #{get_gem_file.call} -f"
+  sh "rake build"
+  sh "gem push #{get_gem_file.call}"
+end
+
