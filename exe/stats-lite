@@ -4,22 +4,21 @@
 require "stats_lite"
 
 arg = ARGV[0]
-if arg == "-v"
-  return print "StatsLite V#{StatsLite::VERSION}\n"
-end
-
+return print "StatsLite V#{StatsLite::VERSION}\n" if arg == "-v"
 require "rack/handler/puma"
 require "filewatcher"
 
 
 print StatsLite::Log.yellow("\nStarting stats-lite\n")
 
-config = "./config.rb" || ARGV[0]
+config = arg || "./config.rb"
 
 load_config = -> do
   if File.exist?(config)
-    print StatsLite::Log.red "\nFound config.rb\n"
+    print StatsLite::Log.green "\nFound config file #{config}\n"
     load config
+  else
+    print StatsLite::Log.red "\nNo config found #{config}\n"
   end
 end
 
