@@ -30,4 +30,3 @@ task "deploy" do
   sh "rake build"
   sh "gem push #{get_gem_file.call}"
 end
-

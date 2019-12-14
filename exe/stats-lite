@@ -6,7 +6,7 @@ require "rack/handler/puma"
 require "filewatcher"
 
 print StatsLite::Log.yellow("\nStarting stats-lite\n")
-config = "./config.rb"
+config = "./config.rb" || ARGV[0]
 
 load_config = -> do
   if File.exist?(config)
