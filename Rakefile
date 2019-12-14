@@ -20,7 +20,7 @@ end
 desc "integration"
 task "integration" do
   sh "rake test"
-  sh "cd integration_test && stats-lite"
+  sh "cd integration_test && stats-lite ./config.rb"
 end
 
 
