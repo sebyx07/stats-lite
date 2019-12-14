@@ -2,10 +2,18 @@
 # frozen_string_literal: true
 
 require "stats_lite"
+
+arg = ARGV[0]
+if arg == "-v"
+  return print "StatsLite V#{StatsLite::VERSION}\n"
+end
+
 require "rack/handler/puma"
 require "filewatcher"
 
+
 print StatsLite::Log.yellow("\nStarting stats-lite\n")
+
 config = "./config.rb" || ARGV[0]
 
 load_config = -> do
