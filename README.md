@@ -27,7 +27,7 @@ Add to startup, crontab
 ```shell_script
 crontab -e
 # then add
-@reboot /usr/local/bin/stats-lite
+@reboot /usr/local/bin/stats-lite /home/deploy/.stats-lite/config.rb
 ```
 
 ![demo](https://raw.githubusercontent.com/sebyx07/stats-lite/master/docs/example.png)
