@@ -11,6 +11,11 @@ module StatsLite
       _port ? @port = _port : @port
     end
 
+    def rack(&block)
+      return @rack unless block_given?
+      @rack = block
+    end
+
     def app
       _app = StatsLite::App
       if block_given?

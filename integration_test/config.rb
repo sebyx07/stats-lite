@@ -21,4 +21,10 @@ StatsLite.configure do |s, h|
       { cpus: h.command("nproc") }.to_json
     end
   end
+
+  s.rack do
+    map "/rack" do
+      run lambda { |env| [200, { "Content-Type" => "text/plain" }, ["OK"]] }
+    end
+  end
 end

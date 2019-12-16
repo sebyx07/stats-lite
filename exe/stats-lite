@@ -31,7 +31,8 @@ end
 
 app = Rack::Builder.new do
   use StatsLite::App
-  run lambda { |env| [404, {}, []] }
+  instance_exec(&StatsLite.configure.rack) if StatsLite.configure.rack.respond_to?(:call)
+  run lambda { |_env| [404, {}, []] }
 end
 
 Rack::Handler::Puma.run(app, Port: StatsLite.configure.port)

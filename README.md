@@ -83,5 +83,12 @@ StatsLite.configure do |s, h|
       { cpus: h.command("nproc", { cache: true }) }.to_json
     end
   end
+
+
+  s.rack do   # use rack builder, it's also password protected from above^
+    map "/rack" do
+      run lambda { |env| [200, {'Content-Type' => 'text/plain'}, ['OK']] }
+    end
+  end
 end
 ```
