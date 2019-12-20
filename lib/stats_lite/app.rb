@@ -7,9 +7,6 @@ module StatsLite
       conf_pass = StatsLite.configure.password
 
       if conf_pass && conf_pass != password
-        if session[:stats_lite_password]
-          session[:stats_lite_password] = nil
-        end
         next halt 404, { "Content-Type" => "text/plain" }, ""
       end
 
