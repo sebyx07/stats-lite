@@ -6,8 +6,6 @@ require "stats_lite"
 arg = ARGV[0]
 return print "StatsLite V#{StatsLite::VERSION}\n" if arg == "-v"
 require "rack/handler/puma"
-require "filewatcher"
-
 
 print StatsLite::Log.yellow("\nStarting stats-lite\n")
 
@@ -23,11 +21,6 @@ load_config = -> do
 end
 
 load_config.call
-Thread.new do
-  Filewatcher.new(StatsLite.configure.watch).watch do |filename, event|
-    load_config.call
-  end
-end
 
 app = Rack::Builder.new do
   use StatsLite::App

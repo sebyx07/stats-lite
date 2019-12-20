@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "sinatra/base"
+require "sinatra"
 require "json"
 require "vidibus-sysinfo"
 

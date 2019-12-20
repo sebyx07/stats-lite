@@ -4,7 +4,6 @@ module StatsLite
   class Configuration
     def initialize
       @port = 9111
-      @watch = ["config.rb"]
     end
 
     def port(_port = nil)
@@ -23,10 +22,6 @@ module StatsLite
       else
         _app
       end
-    end
-
-    def watch(_paths = nil)
-      _paths ? @watch = _paths : @watch
     end
 
     def password(_pass = nil)

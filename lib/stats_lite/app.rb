@@ -3,12 +3,23 @@
 module StatsLite
   class App < Sinatra::Base
     before do
-      password = params[:password]
+      password = params[:password] || request.cookies["stats_lite_password"]
       conf_pass = StatsLite.configure.password
 
       if conf_pass && conf_pass != password
-        halt 404, { "Content-Type" => "text/plain" }, ""
+        if session[:stats_lite_password]
+          session[:stats_lite_password] = nil
+        end
+        next halt 404, { "Content-Type" => "text/plain" }, ""
       end
+
+      unless session[:stats_lite_password]
+        set_session(password)
+      end
+    end
+
+    def set_session(password)
+      response.set_cookie "stats_lite_password", password
     end
 
     get "/" do

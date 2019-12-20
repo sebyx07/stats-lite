@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    stats_lite (0.7.0)
+    stats_lite (0.7.1)
       filewatcher (~> 1.1.1)
       puma (>= 3.0.0, < 5.0.0)
       rack (>= 2.0.0, < 3.0.0)
