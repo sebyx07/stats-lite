@@ -27,4 +27,10 @@ StatsLite.configure do |s, h|
       run lambda { |env| [200, { "Content-Type" => "text/plain" }, ["OK"]] }
     end
   end
+
+  s.cron do |rufus|
+    rufus.every "5s" do
+      print "\ncron job"
+    end
+  end
 end

@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["sebi"]
   spec.email         = ["sebyx07.pro@gmail.com"]
 
-  spec.summary       = "Simple web server to get linux system information. Rails compatible engine"
-  spec.description   = %{ Get system information for linux hosts. Standalone or rails engine }
+  spec.summary       = "Simple web server to get linux system information. Rails compatible engine. Supports scheduled jobs"
+  spec.description   = %{ Get system information for linux hosts. Standalone or rails engine. Rufus scheduler included }
   spec.homepage      = "https://github.com/sebyx07/stats-lite"
   spec.license       = "MIT"
 
@@ -45,5 +45,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "puma", ">= 3.0.0", "< 5.0.0"
   spec.add_dependency "sinatra", ">= 2.0.0", "< 3.0.0"
   spec.add_dependency "vidibus-sysinfo", "~> 1.2.0"
-  spec.add_dependency "filewatcher", "~> 1.1.1"
+  spec.add_dependency "rufus-scheduler", "~> 3.6.0"
 end

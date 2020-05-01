@@ -31,6 +31,11 @@ module StatsLite
     def data(_data = nil)
       _data ? @data = _data : @data
     end
+
+    def cron
+      @rufus_wrapper ||= RufusWrapper.new
+      yield @rufus_wrapper.instance
+    end
   end
 
   class << self

@@ -90,5 +90,14 @@ StatsLite.configure do |s, h|
       run lambda { |env| [200, {'Content-Type' => 'text/plain'}, ['OK']] }
     end
   end
+
+  s.cron do |rufus| # uses the Rufus scheduler, more details here https://github.com/jmettraux/rufus-scheduler
+    rufus.every "5s" do
+      print "\n cron job"
+    end
+    rufus.every "1h" do
+      print "\n hourly cron job"
+    end
+  end
 end
 ```
