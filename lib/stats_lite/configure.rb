@@ -33,7 +33,7 @@ module StatsLite
     end
 
     def cron
-      @rufus_wrapper ||= RufusWrapper.new
+      @rufus_wrapper ||= StatsLite::RufusWrapper.new
       yield @rufus_wrapper.instance
     end
   end
