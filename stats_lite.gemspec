@@ -41,7 +41,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.9.0"
   spec.add_development_dependency "rubocop-rails_config", "~> 0.12.1"
 
-  spec.add_dependency "rack", ">= 2.0.0", "< 3.0.0"
+  spec.add_dependency "rack", ">= 2.0.0", "< 4.0.0"
   spec.add_dependency "puma", ">= 3.0.0", "< 5.0.0"
   spec.add_dependency "sinatra", ">= 2.0.0", "< 3.0.0"
   spec.add_dependency "vidibus-sysinfo", "~> 1.2.0"
